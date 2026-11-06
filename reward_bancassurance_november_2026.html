@@ -1,0 +1,1432 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bancassurance Reward Portal - Maybank x Allianz | November 2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        neu: {
+                            bg: '#e6edf7',
+                            dark: '#b8c6dc',
+                            light: '#ffffff',
+                            text: '#2d3748',
+                            muted: '#64748b',
+                            blue: '#2563eb',
+                            gold: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #e6edf7;
+            color: #2d3748;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Neumorphic Soft UI Tokens */
+        .neu-flat {
+            background: #e6edf7;
+            box-shadow: 8px 8px 16px #c1cbdc, -8px -8px 16px #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .neu-pressed {
+            background: #e6edf7;
+            box-shadow: inset 4px 4px 8px #c1cbdc, inset -4px -4px 8px #ffffff;
+        }
+
+        .neu-input {
+            background: #e6edf7;
+            box-shadow: inset 3px 3px 6px #c1cbdc, inset -3px -3px 6px #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .neu-input:focus {
+            box-shadow: inset 4px 4px 8px #b4bfd2, inset -4px -4px 8px #ffffff;
+            border-color: #2563eb;
+            outline: none;
+        }
+
+        .neu-button {
+            background: #e6edf7;
+            box-shadow: 6px 6px 12px #c1cbdc, -6px -6px 12px #ffffff;
+            transition: all 0.2s ease;
+        }
+
+        .neu-button:hover {
+            box-shadow: 8px 8px 16px #b4bfd2, -8px -8px 16px #ffffff;
+            transform: translateY(-1px);
+        }
+
+        .neu-button:active, .neu-button.active {
+            box-shadow: inset 4px 4px 8px #c1cbdc, inset -4px -4px 8px #ffffff;
+            transform: translateY(0);
+        }
+
+        .neu-badge {
+            box-shadow: 3px 3px 6px #c1cbdc, -3px -3px 6px #ffffff;
+        }
+
+        .neu-accent-blue {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            box-shadow: 6px 6px 14px rgba(37, 99, 235, 0.35), -4px -4px 10px #ffffff;
+            color: white;
+        }
+
+        .active-row {
+            background-color: rgba(37, 99, 235, 0.08) !important;
+            border-left: 4px solid #2563eb !important;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { height: 6px; width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #e6edf7; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #b8c6dc; border-radius: 9999px; }
+
+        /* CETAK KERTAS / PDF OPTIMIZATION STYLESHEET */
+        @media print {
+            body, html {
+                background: #ffffff !important;
+                color: #000000 !important;
+                height: auto !important;
+                min-height: auto !important;
+                overflow: visible !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            header, footer, #toast, .bg-gradient-to-r, .tab-btn, #presetButtonsContainer, .no-print {
+                display: none !important;
+            }
+
+            main {
+                max-width: 100% !important;
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 15px !important;
+                display: block !important;
+            }
+
+            .grid {
+                display: block !important;
+            }
+
+            .lg\:col-span-7, .lg\:col-span-5 {
+                width: 100% !important;
+                margin-bottom: 25px !important;
+                display: block !important;
+            }
+
+            .neu-flat, .neu-pressed, .neu-input, .neu-badge {
+                box-shadow: none !important;
+                border: 1px solid #cbd5e1 !important;
+                background: #ffffff !important;
+                color: #000000 !important;
+                page-break-inside: avoid;
+            }
+
+            h1, h2, h3, h4, p, span, div, td, th, label, input, select {
+                color: #000000 !important;
+                text-shadow: none !important;
+            }
+
+            .text-blue-600, .text-blue-700, .text-blue-800 {
+                color: #1e40af !important;
+            }
+
+            .print-only-header {
+                display: block !important;
+            }
+        }
+
+        .print-only-header {
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-[#e6edf7] text-slate-700 min-h-screen flex flex-col justify-between selection:bg-blue-500 selection:text-white">
+
+    <!-- ANNOUNCEMENT BAR -->
+    <div class="bg-gradient-to-r from-blue-700 via-blue-600 to-indigo-700 text-white px-4 py-2 text-xs font-semibold text-center flex justify-center items-center gap-2 shadow-sm no-print">
+        <i data-lucide="sparkles" class="w-4 h-4 animate-pulse"></i>
+        <span>INTERNAL REFERENCE PORTAL · PROGRAM CASH REWARD BANCASSURANCE · PERIODE ISSUED: 1–30 NOVEMBER 2026</span>
+    </div>
+
+    <!-- MAIN HEADER -->
+    <header class="py-4 px-4 sm:px-6 lg:px-8 border-b border-slate-300/40 bg-[#e6edf7]/90 sticky top-0 z-40 backdrop-blur-md no-print">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3.5">
+                <div class="w-12 h-12 rounded-2xl neu-flat flex items-center justify-center text-blue-600 font-black text-2xl shadow-inner">
+                    M
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-xl font-extrabold text-slate-800 tracking-tight">Kalkulator Cash Reward Bank Staff</h1>
+                        <span class="neu-badge bg-blue-500/10 text-blue-600 text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-blue-500/20">NOV 2026</span>
+                    </div>
+                    <p class="text-xs text-slate-500 font-medium">Maybank & Allianz Life Indonesia · Soft UI Reward Hub</p>
+                </div>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="flex items-center gap-3">
+                <button onclick="resetCurrentForm()" class="neu-button px-3.5 py-2 rounded-2xl text-xs font-bold text-slate-600 flex items-center gap-1.5 hover:text-rose-600">
+                    <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                    <span>Reset</span>
+                </button>
+                <button onclick="shareSummary()" class="neu-button px-4 py-2 rounded-2xl text-xs font-bold text-slate-700 flex items-center gap-2 hover:text-blue-600">
+                    <i data-lucide="share-2" class="w-4 h-4 text-blue-600"></i>
+                    <span>Bagikan Ringkasan</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- CONTENT WRAPPER -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+
+        <!-- PRINT ONLY HEADER -->
+        <div class="print-only-header mb-6 pb-4 border-b-2 border-slate-800">
+            <div class="flex justify-between items-center">
+                <div>
+                    <h1 class="text-xl font-black text-slate-900">MAYBANK × ALLIANZ BANCASSURANCE</h1>
+                    <p class="text-xs font-bold text-slate-700">Ringkasan Simulasi Cash Reward Bank Staff · November 2026</p>
+                </div>
+                <div class="text-right text-xs text-slate-600">
+                    <p>Internal Reference Only</p>
+                    <p id="printDate"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- PROGRAM TABS SELECTION -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3.5 mb-6 no-print">
+            <button onclick="switchTab('p1')" id="tab-p1" class="tab-btn p-3.5 rounded-2xl text-left neu-button flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-blue-500/10 text-blue-600 neu-badge">Program 01</span>
+                    <i data-lucide="coins" class="w-4 h-4 text-blue-600"></i>
+                </div>
+                <div>
+                    <div class="font-extrabold text-xs sm:text-sm text-slate-800 leading-tight">Cash Reward Fund</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">MP Growth & Investa II</div>
+                </div>
+            </button>
+
+            <button onclick="switchTab('p2')" id="tab-p2" class="tab-btn p-3.5 rounded-2xl text-left neu-button flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-600 neu-badge">Program 02</span>
+                    <i data-lucide="badge-dollar-sign" class="w-4 h-4 text-amber-600"></i>
+                </div>
+                <div>
+                    <div class="font-extrabold text-xs sm:text-sm text-slate-800 leading-tight">Pintar USD</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">Reward Bertingkat USD</div>
+                </div>
+            </button>
+
+            <button onclick="switchTab('p3')" id="tab-p3" class="tab-btn p-3.5 rounded-2xl text-left neu-button flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-600 neu-badge">Earlybird</span>
+                    <i data-lucide="trophy" class="w-4 h-4 text-emerald-600"></i>
+                </div>
+                <div>
+                    <div class="font-extrabold text-xs sm:text-sm text-slate-800 leading-tight">Prestige Shield</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">Seller & Leader Tiering</div>
+                </div>
+            </button>
+
+            <button onclick="switchTab('p4')" id="tab-p4" class="tab-btn p-3.5 rounded-2xl text-left neu-button flex flex-col justify-between">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-600 neu-badge">Program 04</span>
+                    <i data-lucide="zap" class="w-4 h-4 text-purple-600"></i>
+                </div>
+                <div>
+                    <div class="font-extrabold text-xs sm:text-sm text-slate-800 leading-tight">Reach More</div>
+                    <div class="text-[10px] text-slate-500 mt-0.5">Tier, Booster & NTBA</div>
+                </div>
+            </button>
+
+            <button onclick="switchTab('master')" id="tab-master" class="tab-btn col-span-2 md:col-span-1 p-3.5 rounded-2xl text-left neu-button flex flex-col justify-between bg-gradient-to-br from-blue-50/50 to-indigo-50/50">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-full bg-blue-600 text-white neu-badge">Grand Optimizer</span>
+                    <i data-lucide="calculator" class="w-4 h-4 text-blue-600"></i>
+                </div>
+                <div>
+                    <div class="font-extrabold text-xs sm:text-sm text-blue-900 leading-tight">Kalkulator Gabungan</div>
+                    <div class="text-[10px] text-blue-600/80 mt-0.5">Simulasi Total Earnings</div>
+                </div>
+            </button>
+        </div>
+
+        <!-- MAIN DISPLAY PANEL -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- LEFT SECTION: INPUT FORM & SCHEME DETAILS (7 COLS) -->
+            <div class="lg:col-span-7 space-y-6">
+
+                <!-- PROGRAM BANNER HEADER CARD -->
+                <div class="neu-flat rounded-3xl p-5 sm:p-6 relative overflow-hidden">
+                    <div class="flex items-center gap-3 mb-2">
+                        <span id="progBadge" class="text-xs font-extrabold px-3 py-1 rounded-full bg-blue-500/10 text-blue-600 neu-badge">PROGRAM 01</span>
+                        <span class="text-xs text-slate-500 font-medium flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> 1–30 November 2026</span>
+                    </div>
+
+                    <h2 id="progTitle" class="text-xl sm:text-2xl font-black text-slate-800 tracking-tight mb-1.5">Cash Reward for Bank Staff on Shore Fund</h2>
+                    <p id="progSubtitle" class="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">Reward sebesar 1% dari Total ANP Fund per polis untuk produk dan fund yang memenuhi kriteria.</p>
+
+                    <!-- META INFO GRID -->
+                    <div id="progMeta" class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-4 border-t border-slate-300/40 text-xs">
+                        <!-- Dynamic metadata -->
+                    </div>
+                </div>
+
+                <!-- SIMULATOR INPUT FORM CARD -->
+                <div class="neu-flat rounded-3xl p-5 sm:p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-sm sm:text-base font-extrabold text-slate-800 flex items-center gap-2">
+                            <i data-lucide="sliders" class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600"></i>
+                            <span>Simulasi Output Reward</span>
+                        </h3>
+                        <span class="text-[10px] sm:text-[11px] font-bold text-slate-500 neu-pressed px-2.5 py-1 rounded-full">Kalkulasi Otomatis</span>
+                    </div>
+
+                    <!-- DYNAMIC INPUT CONTAINER -->
+                    <div id="calculatorForm" class="space-y-4">
+                        <!-- Dynamic inputs -->
+                    </div>
+
+                    <!-- PRESET QUICK BUTTONS -->
+                    <div id="presetButtonsContainer" class="mt-5 pt-4 border-t border-slate-300/40">
+                        <span class="text-xs font-bold text-slate-500 block mb-2">Pilih Cepat Target Sales:</span>
+                        <div id="presetButtons" class="flex flex-wrap gap-2">
+                            <!-- Dynamic preset buttons -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RULES AND SCHEME DETAILS -->
+                <div class="neu-flat rounded-3xl p-5 sm:p-6 space-y-4">
+                    <h3 class="text-sm sm:text-base font-extrabold text-slate-800 flex items-center gap-2">
+                        <i data-lucide="table" class="w-4 h-4 sm:w-5 sm:h-5 text-blue-600"></i>
+                        <span>Ketentuan Skema & Tiering</span>
+                    </h3>
+                    <div id="schemeDetails" class="space-y-4 text-xs sm:text-sm text-slate-600">
+                        <!-- Dynamic scheme details -->
+                    </div>
+                </div>
+
+                <!-- GLOSSARY / TERMINOLOGY QUICK HELP -->
+                <div class="neu-flat rounded-3xl p-5 text-xs space-y-2.5">
+                    <h4 class="font-extrabold text-slate-800 uppercase tracking-wide text-[11px] flex items-center gap-1.5">
+                        <i data-lucide="help-circle" class="w-3.5 h-3.5 text-blue-600"></i>
+                        <span>Glosarium Istilah Penting</span>
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-slate-600">
+                        <div class="neu-pressed p-2.5 rounded-xl">
+                            <span class="font-bold text-slate-800 block">ANP (Annualized Net Premium)</span>
+                            Pencapaian premi yang disetahunkan sesuai ketentuan masing-masing produk.
+                        </div>
+                        <div class="neu-pressed p-2.5 rounded-xl">
+                            <span class="font-bold text-slate-800 block">NTBA (New to Banca)</span>
+                            Nasabah baru perbankan atau nasabah Maybank yang baru pertama kali memiliki polis Bancassurance.
+                        </div>
+                        <div class="neu-pressed p-2.5 rounded-xl">
+                            <span class="font-bold text-slate-800 block">Booster Submit (1–15 Nov)</span>
+                            Tambahan reward khusus untuk SPAJ yang di-submit dan diproses pada rentang 1-15 November 2026.
+                        </div>
+                        <div class="neu-pressed p-2.5 rounded-xl">
+                            <span class="font-bold text-slate-800 block">Extra Sharia</span>
+                            Bonus tambahan apabila terdapat minimal 1 case atau pencapaian nominal pada produk Syariah.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- RIGHT SECTION: LIVE OUTPUT & BREAKDOWN (5 COLS) -->
+            <div class="lg:col-span-5 space-y-6">
+
+                <!-- MAIN LIVE ESTIMATION CARD -->
+                <div id="liveResultCard" class="neu-flat rounded-3xl p-5 sm:p-6 relative overflow-hidden transition-all duration-300">
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-slate-500 block mb-1">Estimasi Cash Reward Net</span>
+                    
+                    <div class="flex items-baseline gap-2 mb-1">
+                        <div id="liveRewardAmount" class="text-3xl sm:text-4xl font-black text-blue-600 tracking-tight">Rp 0</div>
+                    </div>
+                    
+                    <div id="usdConvertedDisplay" class="text-xs text-blue-700 font-mono font-bold mb-4 hidden">
+                        ≈ USD 0.00 (Konversi Kurs Preset)
+                    </div>
+
+                    <!-- TIER STATUS BADGE -->
+                    <div class="neu-pressed rounded-2xl p-3.5 mb-4 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div id="statusIcon" class="w-9 h-9 rounded-xl neu-flat text-blue-600 flex items-center justify-center shrink-0">
+                                <i data-lucide="award" class="w-4 h-4"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] uppercase font-extrabold text-slate-400 block">Status Pencapaian</span>
+                                <span id="liveStatusText" class="text-xs font-bold text-slate-800">Belum Memenuhi Minimal</span>
+                            </div>
+                        </div>
+                        <span id="tierBadge" class="text-xs font-extrabold px-3 py-1 rounded-full neu-badge bg-blue-500/10 text-blue-600">TIER -</span>
+                    </div>
+
+                    <!-- PROGRESS TO NEXT TIER BAR -->
+                    <div class="space-y-1.5 mb-5">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-500 font-bold">Progres Ke Tier Berikutnya</span>
+                            <span id="progressPercent" class="text-blue-600 font-black">0%</span>
+                        </div>
+                        <div class="w-full h-3 neu-pressed rounded-full overflow-hidden p-0.5">
+                            <div id="progressBar" class="h-full bg-gradient-to-r from-blue-600 to-indigo-500 rounded-full transition-all duration-500 w-0"></div>
+                        </div>
+                        <p id="progressNextHint" class="text-[11px] text-slate-500 text-right font-medium">Isi nominal untuk melihat estimasi</p>
+                    </div>
+
+                    <!-- CALCULATION ITEMIZED BREAKDOWN -->
+                    <div class="border-t border-slate-300/40 pt-4 space-y-2">
+                        <h4 class="text-xs font-extrabold text-slate-700 uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                            <i data-lucide="receipt" class="w-4 h-4 text-blue-600"></i>
+                            <span>Rincian Perhitungan</span>
+                        </h4>
+
+                        <div id="breakdownList" class="space-y-1.5 text-xs">
+                            <!-- Dynamic breakdown items -->
+                        </div>
+                    </div>
+
+                    <!-- SUMMARY NOTE / DISCLAIMER -->
+                    <div class="mt-5 p-3 rounded-2xl neu-pressed text-[11px] text-slate-600 leading-relaxed flex items-start gap-2.5">
+                        <i data-lucide="info" class="w-4 h-4 text-blue-600 shrink-0 mt-0.5"></i>
+                        <span id="disclaimerNote">Perhitungan merupakan simulasi estimasi internal Maybank x Allianz. Validasi pencapaian akhir mengacu pada laporan komisi resmi.</span>
+                    </div>
+                </div>
+
+                <!-- QUICK ACTION CARD -->
+                <div class="neu-flat rounded-3xl p-5 flex flex-col gap-3 no-print">
+                    <button onclick="copyDetailedQuote()" class="w-full neu-accent-blue font-extrabold py-3.5 px-4 rounded-2xl flex items-center justify-center gap-2 transition hover:opacity-95 text-xs sm:text-sm">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        <span>Salin Rincian Simulasi</span>
+                    </button>
+                    <button onclick="window.print()" class="w-full neu-button text-slate-700 font-bold py-3 px-4 rounded-2xl flex items-center justify-center gap-2 text-xs">
+                        <i data-lucide="printer" class="w-4 h-4 text-slate-500"></i>
+                        <span>Cetak Rincian Program (PDF)</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-300/40 py-5 text-center text-xs text-slate-500">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+                <span class="font-semibold">Maybank × Allianz Bancassurance Internal Reference 2026</span>
+            </div>
+            <p>Pastikan mengacu pada Surat Edaran (SE) resmi yang berlaku di unit kerja Anda.</p>
+        </div>
+    </footer>
+
+    <!-- TOAST NOTIFICATION -->
+    <div id="toast" class="fixed bottom-6 right-6 neu-accent-blue text-white px-5 py-3.5 rounded-2xl font-bold text-xs sm:text-sm shadow-2xl flex items-center gap-2.5 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
+        <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+        <span id="toastMessage">Teks berhasil disalin!</span>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC ENGINE -->
+    <script>
+        // Formatter Utilities
+        const formatIDR = num => 'Rp ' + Math.round(num || 0).toLocaleString('id-ID');
+        const formatUSD = num => 'USD ' + Math.round(num || 0).toLocaleString('id-ID');
+        const parseNum = val => {
+            if (typeof val === 'number') return val;
+            if (!val) return 0;
+            return parseFloat(String(val).replace(/\./g, '').replace(/,/g, '.')) || 0;
+        };
+
+        // State Tracking
+        let activeTab = 'p1';
+        let currentResult = {
+            amountIDR: 0,
+            amountUSD: 0,
+            status: '',
+            tierName: '',
+            progressPercent: 0,
+            nextHint: '',
+            breakdown: []
+        };
+
+        // Master Programs Data Definition
+        const programsData = {
+            p1: {
+                badge: 'PROGRAM 01',
+                title: 'Cash Reward for Bank Staff on Shore Fund',
+                subtitle: 'Reward sebesar 1% dari Total ANP Fund per polis untuk produk dan fund yang memenuhi kriteria minimum.',
+                meta: [
+                    ['Periode Issued', '1–30 Nov 2026'],
+                    ['Peserta', 'RMPW, RMHYBRID, RMDP, RMPV'],
+                    ['Tipe Hadiah', 'Cash Reward (1% ANP)'],
+                    ['Produk Eligible', 'MP Growth & Investa II']
+                ],
+                presets: [
+                    { label: 'Growth 10.000 USD', action: () => setFormValues({ prodP1: '10000', anpP1: '10.000', usdRate: '16.000' }) },
+                    { label: 'Growth 25.000 USD', action: () => setFormValues({ prodP1: '10000', anpP1: '25.000', usdRate: '16.000' }) },
+                    { label: 'Investa 5.000 USD', action: () => setFormValues({ prodP1: '2000', anpP1: '5.000', usdRate: '16.000' }) },
+                    { label: 'Investa 15.000 USD', action: () => setFormValues({ prodP1: '2000', anpP1: '15.000', usdRate: '16.000' }) }
+                ],
+                schemeHtml: `
+                    <div class="overflow-x-auto rounded-2xl neu-pressed">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-blue-500/10 text-blue-700 border-b border-slate-300/40 font-bold">
+                                <tr>
+                                    <th class="p-3">Produk</th>
+                                    <th class="p-3">Minimum ANP Fund</th>
+                                    <th class="p-3">Persentase Cash Reward</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-300/40 text-slate-700">
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-800">MyProtection Growth</td>
+                                    <td class="p-3 font-mono font-semibold">≥ USD 10.000</td>
+                                    <td class="p-3 text-blue-600 font-extrabold">1% Total ANP Fund</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3 font-bold text-slate-800">MyProtection Investa II</td>
+                                    <td class="p-3 font-mono font-semibold">≥ USD 2.000</td>
+                                    <td class="p-3 text-blue-600 font-extrabold">1% Total ANP Fund</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="neu-pressed p-3.5 rounded-2xl text-xs text-slate-600 space-y-1">
+                        <p class="font-bold text-blue-700 mb-1">Definisi Total ANP Fund:</p>
+                        <p>• <b>Investa II New Business / Top Up Single:</b> 10% dari premi yang dibayarkan nasabah.</p>
+                        <p>• <b>MP Growth New Business:</b> 100% dari premi Basic & Top Up Regular tahun pertama.</p>
+                    </div>
+                `
+            },
+
+            p2: {
+                badge: 'PROGRAM 02',
+                title: 'Cash Reward · MyProtection Pintar USD',
+                subtitle: 'Cash reward net bertingkat (tiering) dalam mata uang Rupiah berdasarkan akumulasi pencapaian Total ANP USD.',
+                meta: [
+                    ['Periode Issued', '1–30 Nov 2026'],
+                    ['Peserta', 'RMPW, RMHYBRID, RMDP, RMPV'],
+                    ['Mata Uang Polis', 'USD (United States Dollar)'],
+                    ['Produk', 'MyProtection Pintar USD']
+                ],
+                presets: [
+                    { label: 'Tier 1 (USD 15.000)', action: () => setFormValues({ anpP2: '15.000' }) },
+                    { label: 'Tier 2 (USD 22.500)', action: () => setFormValues({ anpP2: '22.500' }) },
+                    { label: 'Tier 3 (USD 30.000)', action: () => setFormValues({ anpP2: '30.000' }) },
+                    { label: 'Tier 4+ (USD 50.000)', action: () => setFormValues({ anpP2: '50.000' }) }
+                ],
+                schemeHtml: `
+                    <div class="overflow-x-auto rounded-2xl neu-pressed">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-blue-500/10 text-blue-700 border-b border-slate-300/40 font-bold">
+                                <tr>
+                                    <th class="p-3">Target Tiering ANP (USD)</th>
+                                    <th class="p-3">Cash Reward Net (Rp)</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-300/40 text-slate-700">
+                                <tr id="row-p2-1"><td class="p-3 font-mono">≥ USD 15.000 – < USD 22.500</td><td class="p-3 font-extrabold text-blue-600">Rp 1.000.000</td></tr>
+                                <tr id="row-p2-2"><td class="p-3 font-mono">≥ USD 22.500 – < USD 30.000</td><td class="p-3 font-extrabold text-blue-600">Rp 1.500.000</td></tr>
+                                <tr id="row-p2-3"><td class="p-3 font-mono">≥ USD 30.000 – < USD 40.000</td><td class="p-3 font-extrabold text-blue-600">Rp 2.000.000</td></tr>
+                                <tr id="row-p2-4"><td class="p-3 font-mono">≥ USD 40.000</td><td class="p-3 font-extrabold text-blue-600">Rp 3.000.000</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="neu-pressed p-3.5 rounded-2xl text-xs text-slate-700">
+                        <b>Booster Kelipatan:</b> Untuk pencapaian di atas USD 40.000, setiap penambahan ANP USD 10.000 mendapatkan tambahan cash reward sebesar <b>+Rp 500.000</b>.
+                    </div>
+                `
+            },
+
+            p3: {
+                badge: 'EARLYBIRD PRESTIGE',
+                title: 'Earlybird MyProtection Prestige Shield',
+                subtitle: 'Program skema reward khusus untuk Seller dan Leader cabang berdasarkan tiering pencapaian ANP.',
+                meta: [
+                    ['Periode Issued', '1–30 Nov 2026'],
+                    ['Peserta Seller', 'RMPW, RMHYBRID, RMDP, RMPV'],
+                    ['Peserta Leader', 'BM, Region, PW'],
+                    ['Produk', 'MP Prestige Shield (IDR)']
+                ],
+                presets: [
+                    { label: 'Tier 150.000.000', action: () => setFormValues({ anpP3: '150.000.000' }) },
+                    { label: 'Tier 300.000.000', action: () => setFormValues({ anpP3: '300.000.000' }) },
+                    { label: 'Tier 600.000.000', action: () => setFormValues({ anpP3: '600.000.000' }) },
+                    { label: 'Tier 1.000.000.000', action: () => setFormValues({ anpP3: '1.000.000.000' }) },
+                    { label: 'Super Tier 1.500.000.000', action: () => setFormValues({ anpP3: '1.500.000.000' }) }
+                ],
+                schemeHtml: `
+                    <div class="overflow-x-auto rounded-2xl neu-pressed">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-emerald-500/10 text-emerald-800 border-b border-slate-300/40 font-bold">
+                                <tr>
+                                    <th class="p-3">ANP Tiering Target</th>
+                                    <th class="p-3">Reward Seller</th>
+                                    <th class="p-3">Reward Leader</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-300/40 text-slate-700">
+                                <tr id="row-p3-1"><td class="p-3 font-mono">Rp 150.000.000</td><td class="p-3 font-extrabold text-blue-600">Rp 1.000.000</td><td class="p-3 text-emerald-700 font-bold">Rp 300.000</td></tr>
+                                <tr id="row-p3-2"><td class="p-3 font-mono">Rp 300.000.000</td><td class="p-3 font-extrabold text-blue-600">Rp 2.500.000</td><td class="p-3 text-emerald-700 font-bold">Rp 750.000</td></tr>
+                                <tr id="row-p3-3"><td class="p-3 font-mono">Rp 600.000.000</td><td class="p-3 font-extrabold text-blue-600">Rp 5.000.000</td><td class="p-3 text-emerald-700 font-bold">Rp 1.500.000</td></tr>
+                                <tr id="row-p3-4"><td class="p-3 font-mono">Rp 1.000.000.000</td><td class="p-3 font-extrabold text-blue-600">Rp 10.000.000</td><td class="p-3 text-emerald-700 font-bold">Rp 3.000.000</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="neu-pressed p-3.5 rounded-2xl text-xs text-slate-700">
+                        <b>Tambahan di atas Rp1 Miliar:</b> Setiap penambahan ANP Rp 100.000.000 mendapatkan tambahan reward Seller <b>+Rp 1.500.000</b> & Leader <b>+Rp 500.000</b>.
+                    </div>
+                `
+            },
+
+            p4: {
+                badge: 'PROGRAM 04',
+                title: 'Reach More Reward More',
+                subtitle: 'Skema reward seller terlengkap mencakup Kategori Tiering, Multi-case NB, Submit Booster, Multiplier NTBA & Extra Sharia.',
+                meta: [
+                    ['Periode Issued', '1–30 Nov 2026'],
+                    ['Booster Submit', 'Khusus Submit 1–15 Nov'],
+                    ['Peserta', 'Bank Staff (RMPW/Hybrid/DP/PV)'],
+                    ['Produk Eligible', 'Unit Link & Tradisional Allianz']
+                ],
+                presets: [
+                    { label: 'Rookie (25.000.000)', action: () => setFormValues({ anpConvP4: '25.000.000', anpShariaP4: '', anpSubmitP4: '', casesP4: '2', ntbaP4: '' }) },
+                    { label: 'Silver (150.000.000)', action: () => setFormValues({ anpConvP4: '150.000.000', anpShariaP4: '', anpSubmitP4: '', casesP4: '2', ntbaP4: '150.000.000' }) },
+                    { label: 'Gold (300.000.000)', action: () => setFormValues({ anpConvP4: '250.000.000', anpShariaP4: '50.000.000', anpSubmitP4: '300.000.000', casesP4: '2', ntbaP4: '200.000.000', shariaCaseP4: '1' }) },
+                    { label: 'Platinum (600.000.000)', action: () => setFormValues({ anpConvP4: '500.000.000', anpShariaP4: '100.000.000', anpSubmitP4: '600.000.000', casesP4: '2', ntbaP4: '600.000.000', shariaCaseP4: '1' }) }
+                ],
+                schemeHtml: `
+                    <div class="space-y-4">
+                        <div class="neu-pressed p-3.5 rounded-2xl text-xs text-slate-700 space-y-1">
+                            <b class="text-blue-700">Kriteria Produk Eligible</b>
+                            <p>• Semua produk Unit Link & Traditional Allianz Life Indonesia, kecuali MyProtection Jiwa Garda dan MyProtection Simple.</p>
+                            <p>• Produk Regular Premium: pencapaian dihitung dengan cara bayar tahunan.</p>
+                            <p>• MyProtection Investa II: New Business dan Top Up Existing tahun pertama.</p>
+                        </div>
+                        <h4 class="font-extrabold text-xs text-blue-700 uppercase tracking-wide">1. Tiering Base & Booster Submit</h4>
+                        <div class="overflow-x-auto rounded-2xl neu-pressed">
+                            <table class="w-full text-left text-xs">
+                                <thead class="bg-purple-500/10 text-purple-800 border-b border-slate-300/40 font-bold">
+                                    <tr>
+                                        <th class="p-2.5">Kategori</th>
+                                        <th class="p-2.5">Target ANP</th>
+                                        <th class="p-2.5">0–1 NB</th>
+                                        <th class="p-2.5">≥2 NB</th>
+                                        <th class="p-2.5">Add Booster*</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-slate-300/40 text-slate-700">
+                                    <tr id="row-p4-0"><td class="p-2.5 font-bold text-slate-800">Rookie</td><td class="p-2.5">Rp 25.000.000</td><td class="p-2.5">150.000</td><td class="p-2.5 font-bold text-blue-600">250.000</td><td class="p-2.5 text-purple-700 font-semibold">+150.000</td></tr>
+                                    <tr id="row-p4-1"><td class="p-2.5 font-bold text-slate-800">Bronze</td><td class="p-2.5">Rp 75.000.000</td><td class="p-2.5">750.000</td><td class="p-2.5 font-bold text-blue-600">1.000.000</td><td class="p-2.5 text-purple-700 font-semibold">+250.000</td></tr>
+                                    <tr id="row-p4-2"><td class="p-2.5 font-bold text-slate-800">Silver</td><td class="p-2.5">Rp 150.000.000</td><td class="p-2.5">3.000.000</td><td class="p-2.5 font-bold text-blue-600">4.000.000</td><td class="p-2.5 text-purple-700 font-semibold">+1.000.000</td></tr>
+                                    <tr id="row-p4-3"><td class="p-2.5 font-bold text-slate-800">Gold</td><td class="p-2.5">Rp 250.000.000</td><td class="p-2.5">6.000.000</td><td class="p-2.5 font-bold text-blue-600">7.000.000</td><td class="p-2.5 text-purple-700 font-semibold">+2.000.000</td></tr>
+                                    <tr id="row-p4-4"><td class="p-2.5 font-bold text-slate-800">Platinum</td><td class="p-2.5">Rp 500.000.000</td><td class="p-2.5">14.000.000</td><td class="p-2.5 font-bold text-blue-600">16.000.000</td><td class="p-2.5 text-purple-700 font-semibold">+5.000.000</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-1">
+                            <div class="neu-pressed p-3.5 rounded-2xl text-xs">
+                                <span class="font-extrabold text-blue-700 block mb-1">2. Multiplier NTBA (New to Banca)</span>
+                                <p class="text-slate-600">• Rp 0 – &lt;Rp 150.000.000 NTBA: <b>110%</b></p>
+                                <p class="text-slate-600">• Rp 150.000.000 – Rp 500.000.000 NTBA: <b>120%</b></p>
+                                <p class="text-slate-600">• &gt;Rp 500.000.000 NTBA: <b>130%</b></p>
+                            </div>
+                            <div class="neu-pressed p-3.5 rounded-2xl text-xs">
+                                <span class="font-extrabold text-emerald-700 block mb-1">3. Extra Reward Sharia</span>
+                                <p class="text-slate-600">• Rookie/Bronze: Min 1 Case Sharia (+50.000 / +200.000)</p>
+                                <p class="text-slate-600">• Silver: Min Rp 30.000.000 Sharia (+800.000)</p>
+                                <p class="text-slate-600">• Gold: Min Rp 50.000.000 (+1.500.000) | Plat: Min Rp 100.000.000 (+3.000.000)</p>
+                            </div>
+                        </div>
+                    </div>
+                `
+            },
+
+            master: {
+                badge: 'GRAND OPTIMIZER',
+                title: 'Multi-Program Earnings Optimizer',
+                subtitle: 'Hitung dan gabungkan potensi reward Anda dari seluruh program Bancassurance bulan November 2026 secara simultan.',
+                meta: [
+                    ['Periode Validasi', '1–30 Nov 2026'],
+                    ['Fitur', 'All-in-One Simulator'],
+                    ['Output', 'Grand Total Multi-Reward'],
+                    ['Status', 'Real-time Summary']
+                ],
+                presets: [
+                    { label: 'Set Target Superstar Bank Staff', action: () => setMasterPresets() }
+                ],
+                schemeHtml: `
+                    <div class="neu-pressed p-4 rounded-2xl text-xs text-slate-700 space-y-2">
+                        <div class="flex items-center gap-2 font-extrabold text-blue-700 text-sm">
+                            <i data-lucide="sparkles" class="w-4 h-4 text-blue-600"></i>
+                            <span>Maksimalkan Pendapatan Reward Anda!</span>
+                        </div>
+                        <p class="leading-relaxed">Setiap program bekerja secara komplementer. Anda bisa memenangkan reward dari <b>Program 1 (Fund)</b>, <b>Program 2 (Pintar USD)</b>, <b>Program 3 (Prestige Shield)</b>, dan <b>Program 4 (Reach More)</b> sekaligus jika nasabah dan produk memenuhi kriteria!</p>
+                    </div>
+                `
+            }
+        };
+
+        // TAB SWITCHER FUNCTION
+        function switchTab(id) {
+            activeTab = id;
+            const p = programsData[id];
+            if (!p) return;
+
+            // 1. Update Tab Buttons styling
+            ['p1', 'p2', 'p3', 'p4', 'master'].forEach(t => {
+                const btn = document.getElementById(`tab-${t}`);
+                if (!btn) return;
+                if (t === id) {
+                    btn.classList.add('active', 'neu-pressed');
+                    btn.classList.remove('neu-button');
+                } else {
+                    btn.classList.remove('active', 'neu-pressed');
+                    btn.classList.add('neu-button');
+                }
+            });
+
+            // 2. Update Banner Header Content
+            document.getElementById('progBadge').textContent = p.badge;
+            document.getElementById('progTitle').textContent = p.title;
+            document.getElementById('progSubtitle').textContent = p.subtitle;
+
+            // Meta Info Items
+            const metaContainer = document.getElementById('progMeta');
+            if (metaContainer) {
+                metaContainer.innerHTML = p.meta.map(m => `
+                    <div class="neu-pressed p-2.5 rounded-2xl">
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold mb-0.5">${m[0]}</span>
+                        <span class="font-extrabold text-slate-800 text-xs">${m[1]}</span>
+                    </div>
+                `).join('');
+            }
+
+            // 3. Update Quick Presets
+            const presetContainer = document.getElementById('presetButtons');
+            if (presetContainer && p.presets) {
+                presetContainer.innerHTML = p.presets.map((pr, idx) => `
+                    <button onclick="programsData['${id}'].presets[${idx}].action()" class="neu-button px-3 py-1.5 rounded-2xl text-xs font-bold text-slate-700 hover:text-blue-600">
+                        ${pr.label}
+                    </button>
+                `).join('');
+            }
+
+            // 4. Update Rules Scheme Table
+            const schemeContainer = document.getElementById('schemeDetails');
+            if (schemeContainer) {
+                schemeContainer.innerHTML = p.schemeHtml;
+            }
+
+            // 5. Render Form & Calculate
+            renderForm();
+            handleCalculation();
+        }
+
+        // AUTO INPUT FORMATTER WITH THOUSAND SEPARATORS
+        function formatInput(el) {
+            let raw = el.value.replace(/\D/g, '');
+            if (!raw) {
+                el.value = '';
+            } else {
+                let num = parseInt(raw, 10);
+                el.value = num.toLocaleString('id-ID');
+            }
+            handleCalculation();
+        }
+
+        // RENDER FORM FIELDS ACCORDING TO ACTIVE TAB
+        function renderForm() {
+            const container = document.getElementById('calculatorForm');
+            if (!container) return;
+            
+            if (activeTab === 'p1') {
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Pilih Produk</label>
+                            <select id="prodP1" onchange="calculate()" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-slate-800 font-bold">
+                                <option value="10000">MyProtection Growth (Min. USD 10.000)</option>
+                                <option value="2000">MyProtection Investa II (Min. USD 2.000)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Total ANP Fund (USD)</label>
+                            <input type="text" id="anpP1" oninput="formatInput(this)" placeholder="Contoh: 15.000" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-blue-600 font-mono font-black">
+                            <span id="anpP1Helper" class="text-[10px] text-slate-500 font-semibold block mt-1.5 font-mono">USD 0</span>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Kurs USD / IDR (Rp)</label>
+                            <div class="relative">
+                                <span class="absolute left-3.5 top-3 text-xs text-slate-500 font-mono font-bold">Rp</span>
+                                <input type="text" id="usdRate" value="16.000" oninput="formatInput(this)" placeholder="16.000" class="w-full neu-input rounded-2xl pl-9 pr-3.5 py-3 text-xs text-blue-600 font-mono font-black">
+                            </div>
+                            <span class="text-[10px] text-slate-500 font-medium block mt-1.5">Khusus konversi rupiah Prog 01</span>
+                        </div>
+                    </div>
+                `;
+            } else if (activeTab === 'p2') {
+                container.innerHTML = `
+                    <div>
+                        <label class="block text-xs font-bold text-slate-600 mb-1.5">Total ANP MyProtection Pintar (USD)</label>
+                        <input type="text" id="anpP2" oninput="formatInput(this)" placeholder="Contoh: 45.000" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-blue-600 font-mono font-black">
+                        <span id="anpP2Helper" class="text-[10px] text-slate-500 font-semibold block mt-1.5 font-mono">USD 0</span>
+                    </div>
+                `;
+            } else if (activeTab === 'p3') {
+                container.innerHTML = `
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Peran Anda</label>
+                            <select id="roleP3" onchange="calculate()" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-slate-800 font-bold">
+                                <option value="seller">Seller (RMPW / RMHYBRID / RMDP / RMPV)</option>
+                                <option value="leader">Leader (BM / Region / PW)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-600 mb-1.5">Total Accumulative ANP (Rp)</label>
+                            <input type="text" id="anpP3" oninput="formatInput(this)" placeholder="Contoh: 1.250.000.000" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-blue-600 font-mono font-black">
+                            <span id="anpP3Helper" class="text-[10px] text-slate-500 font-semibold block mt-1.5 font-mono">Rp 0</span>
+                        </div>
+                    </div>
+                `;
+            } else if (activeTab === 'p4') {
+                container.innerHTML = `
+                    <div class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1.5">ANP Conventional (Rp)</label>
+                                <input type="text" id="anpConvP4" oninput="formatInput(this)" placeholder="Contoh: 250.000.000" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-blue-600 font-mono font-black">
+                                <span id="anpConvP4Helper" class="text-[10px] text-slate-500 font-semibold block mt-1.5">Rp 0</span>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1.5">ANP Sharia (Rp)</label>
+                                <input type="text" id="anpShariaP4" oninput="formatInput(this)" placeholder="Contoh: 50.000.000" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-blue-600 font-mono font-black">
+                                <span id="anpShariaP4Helper" class="text-[10px] text-slate-500 font-semibold block mt-1.5">Rp 0</span>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1.5">ANP NTBA (Rp) <span class="font-normal">(bagian dari total ANP)</span></label>
+                                <input type="text" id="ntbaP4" oninput="formatInput(this)" placeholder="0 jika tidak ada" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-blue-600 font-mono font-black">
+                                <span id="ntbaP4Helper" class="text-[10px] text-slate-500 font-semibold block mt-1.5">Rp 0</span>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1.5">ANP Submit 1–15 November (Rp)</label>
+                                <input type="text" id="anpSubmitP4" oninput="formatInput(this)" placeholder="Isi ANP yang submit 1–15 Nov" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-blue-600 font-mono font-black">
+                                <span id="anpSubmitP4Helper" class="text-[10px] text-slate-500 font-semibold block mt-1.5">Rp 0</span>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1.5">Jumlah Case New Business (NB)</label>
+                                <select id="casesP4" onchange="calculate()" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-slate-800 font-bold">
+                                    <option value="1">0–1 Case NB</option>
+                                    <option value="2" selected>≥ 2 Case NB</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-bold text-slate-600 mb-1.5">Minimal 1 Case Sharia?</label>
+                                <select id="shariaCaseP4" onchange="calculate()" class="w-full neu-input rounded-2xl px-3.5 py-3 text-xs text-slate-800 font-bold">
+                                    <option value="0" selected>Tidak Ada</option>
+                                    <option value="1">Ya, Ada Case Sharia</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="rounded-2xl p-3.5 border border-blue-200 bg-blue-50/70">
+                            <div class="flex items-center justify-between gap-3">
+                                <div>
+                                    <span class="text-[10px] uppercase tracking-wide font-extrabold text-blue-700">Total ANP Otomatis</span>
+                                    <p class="text-[10px] text-slate-500">ANP Conventional + ANP Sharia</p>
+                                </div>
+                                <div id="anpP4Total" class="text-xl font-black text-blue-700">Rp 0</div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (activeTab === 'master') {
+                container.innerHTML = `
+                    <div class="space-y-3.5">
+                        <div class="p-3.5 neu-pressed rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div>
+                                <span class="text-xs font-extrabold text-blue-700 block">Prog 01: MP Growth / Investa ANP (USD)</span>
+                                <span class="text-[11px] text-slate-500 font-medium">1% Cash reward net</span>
+                            </div>
+                            <input type="text" id="mP1" oninput="formatInput(this)" placeholder="USD ANP" class="w-full sm:w-36 neu-input rounded-xl px-3 py-2 text-xs text-blue-600 font-mono font-black">
+                        </div>
+
+                        <div class="p-3.5 neu-pressed rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div>
+                                <span class="text-xs font-extrabold text-amber-700 block">Prog 02: MP Pintar USD ANP (USD)</span>
+                                <span class="text-[11px] text-slate-500 font-medium">Tiering s/d 3jt + 500rb/10k USD</span>
+                            </div>
+                            <input type="text" id="mP2" oninput="formatInput(this)" placeholder="USD ANP" class="w-full sm:w-36 neu-input rounded-xl px-3 py-2 text-xs text-blue-600 font-mono font-black">
+                        </div>
+
+                        <div class="p-3.5 neu-pressed rounded-2xl flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
+                            <div>
+                                <span class="text-xs font-extrabold text-emerald-700 block">Prog 03: MP Prestige Shield (Rp)</span>
+                                <span class="text-[11px] text-slate-500 font-medium">Tiering Seller Rp150M – Rp1B+</span>
+                            </div>
+                            <input type="text" id="mP3" oninput="formatInput(this)" placeholder="Rp ANP" class="w-full sm:w-36 neu-input rounded-xl px-3 py-2 text-xs text-blue-600 font-mono font-black">
+                        </div>
+
+                        <div class="p-3.5 neu-pressed rounded-2xl space-y-3">
+                            <div>
+                                <span class="text-xs font-extrabold text-purple-700 block">Prog 04: Reach More Reward More</span>
+                                <span class="text-[11px] text-slate-500 font-medium">Lengkapi komponen agar estimasi akurat.</span>
+                            </div>
+                            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                                <label class="text-[10px] font-bold">Total ANP Regular (Rp)
+                                    <input type="text" id="mP4" oninput="formatInput(this)" placeholder="Rp ANP" class="mt-1 w-full neu-input rounded-xl px-3 py-2 text-xs text-blue-600 font-mono font-black">
+                                </label>
+                                <label class="text-[10px] font-bold">Jumlah Case NB
+                                    <select id="mP4cases" onchange="calculateMaster()" class="mt-1 w-full neu-input rounded-xl px-2 py-2 text-xs font-bold">
+                                        <option value="1">0–1 case</option><option value="2" selected>≥2 case</option>
+                                    </select>
+                                </label>
+                                <label class="text-[10px] font-bold">Booster Submit?
+                                    <select id="mP4booster" onchange="calculateMaster()" class="mt-1 w-full neu-input rounded-xl px-2 py-2 text-xs font-bold">
+                                        <option value="no" selected>Tidak</option><option value="yes">Ya, submit 1–15 Nov</option>
+                                    </select>
+                                </label>
+                                <label class="text-[10px] font-bold">ANP NTBA (Rp)
+                                    <input type="text" id="mP4ntba" oninput="formatInput(this)" placeholder="0" class="mt-1 w-full neu-input rounded-xl px-3 py-2 text-xs text-blue-600 font-mono font-black">
+                                </label>
+                                <label class="text-[10px] font-bold">ANP Sharia (Rp)
+                                    <input type="text" id="mP4sharia" oninput="formatInput(this)" placeholder="0" class="mt-1 w-full neu-input rounded-xl px-3 py-2 text-xs text-blue-600 font-mono font-black">
+                                </label>
+                                <label class="text-[10px] font-bold">Minimal 1 Case Sharia?
+                                    <select id="mP4shariaCase" onchange="calculateMaster()" class="mt-1 w-full neu-input rounded-xl px-2 py-2 text-xs font-bold">
+                                        <option value="0" selected>Tidak</option><option value="1">Ya</option>
+                                    </select>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            setupEnterNavigation();
+            refreshIcons();
+        }
+
+        // TRIGGER CALCULATION ROUTER
+        function handleCalculation() {
+            if (activeTab === 'master') {
+                calculateMaster();
+            } else {
+                calculate();
+            }
+        }
+
+        // REFRESH LUCIDE ICONS SAFELY
+        function refreshIcons() {
+            if (window.lucide && typeof window.lucide.createIcons === 'function') {
+                window.lucide.createIcons();
+            }
+        }
+
+        // ENTER KEY FORM NAVIGATION
+        function setupEnterNavigation() {
+            const form = document.getElementById('calculatorForm');
+            if (!form) return;
+
+            form.onkeydown = function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const focusables = Array.from(form.querySelectorAll('input:not([disabled]), select:not([disabled])'));
+                    const currentIndex = focusables.indexOf(document.activeElement);
+
+                    if (currentIndex !== -1 && currentIndex < focusables.length - 1) {
+                        const nextElem = focusables[currentIndex + 1];
+                        nextElem.focus();
+                        if (typeof nextElem.select === 'function') {
+                            nextElem.select();
+                        }
+                    } else {
+                        handleCalculation();
+                        const resultCard = document.getElementById('liveResultCard');
+                        if (resultCard) {
+                            resultCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                        }
+                    }
+                }
+            };
+        }
+
+        // PRESET HELPERS
+        function setFormValues(obj) {
+            for (let k in obj) {
+                const el = document.getElementById(k);
+                if (el) el.value = obj[k];
+            }
+            calculate();
+        }
+
+        function setMasterPresets() {
+            document.getElementById('mP1').value = '15.000';
+            document.getElementById('mP2').value = '35.000';
+            document.getElementById('mP3').value = '600.000.000';
+            document.getElementById('mP4').value = '300.000.000';
+            document.getElementById('mP4cases').value = '2';
+            document.getElementById('mP4booster').value = 'yes';
+            document.getElementById('mP4ntba').value = '200.000.000';
+            document.getElementById('mP4sharia').value = '50.000.000';
+            document.getElementById('mP4shariaCase').value = '1';
+            calculateMaster();
+        }
+
+        function resetCurrentForm() {
+            renderForm();
+            handleCalculation();
+            showToast('Formulir berhasil direset!');
+        }
+
+        // PROGRAM CALCULATION ENGINES
+        function calculate() {
+            const usdRate = parseNum(document.getElementById('usdRate')?.value || 16000) || 16000;
+
+            if (activeTab === 'p1') {
+                const minAnp = parseNum(document.getElementById('prodP1')?.value || 10000);
+                const anpUSD = parseNum(document.getElementById('anpP1')?.value || 0);
+                
+                document.getElementById('anpP1Helper').textContent = formatUSD(anpUSD) + ` (${formatIDR(anpUSD * usdRate)})`;
+
+                const isEligible = anpUSD >= minAnp;
+                const rewardUSD = isEligible ? anpUSD * 0.01 : 0;
+                const rewardIDR = rewardUSD * usdRate;
+
+                let progress = Math.min(100, Math.round((anpUSD / minAnp) * 100));
+                let nextHint = isEligible ? 'Target Minimum Tercapai (1% Reward Aktif)' : `Kurang ${formatUSD(minAnp - anpUSD)} lagi untuk memenuhi batas minimal`;
+
+                currentResult = {
+                    amountIDR: rewardIDR,
+                    amountUSD: rewardUSD,
+                    status: isEligible ? 'Memenuhi Syarat 1% Reward' : 'Belum Memenuhi Minimum',
+                    tierName: isEligible ? 'QUALIFIED' : 'NOT QUALIFIED',
+                    progressPercent: progress,
+                    nextHint: nextHint,
+                    breakdown: [
+                        { label: 'Minimum Syarat Produk', value: formatUSD(minAnp) },
+                        { label: 'ANP Fund Diinput', value: formatUSD(anpUSD) },
+                        { label: 'Persentase Cash Reward', value: isEligible ? '1,0%' : '0%' },
+                        { label: 'Estimasi Nominal (USD)', value: formatUSD(rewardUSD) },
+                        { label: 'Kurs USD / IDR Terpakai', value: formatIDR(usdRate) },
+                        { label: 'Estimasi dalam Rupiah', value: formatIDR(rewardIDR) }
+                    ]
+                };
+
+            } else if (activeTab === 'p2') {
+                const anpUSD = parseNum(document.getElementById('anpP2')?.value || 0);
+                document.getElementById('anpP2Helper').textContent = formatUSD(anpUSD);
+
+                let rewardIDR = 0;
+                let tierName = 'BELUM TIER';
+                let progress = 0;
+                let nextHint = '';
+
+                [1,2,3,4].forEach(i => document.getElementById(`row-p2-${i}`)?.classList.remove('active-row'));
+
+                if (anpUSD >= 40000) {
+                    const extraSteps = Math.floor((anpUSD - 40000) / 10000);
+                    rewardIDR = 3000000 + (extraSteps * 500000);
+                    tierName = 'TIER ≥ USD 40.000';
+                    progress = 100;
+                    const nextStepCost = 10000 - ((anpUSD - 40000) % 10000);
+                    nextHint = `Tambahkan ${formatUSD(nextStepCost)} lagi untuk tambahan bonus +Rp 500.000`;
+                    document.getElementById('row-p2-4')?.classList.add('active-row');
+                } else if (anpUSD >= 30000) {
+                    rewardIDR = 2000000;
+                    tierName = 'TIER USD 30.000';
+                    progress = Math.round((anpUSD / 40000) * 100);
+                    nextHint = `Kurang ${formatUSD(40000 - anpUSD)} lagi untuk Tier USD 40.000 (Rp 3.000.000)`;
+                    document.getElementById('row-p2-3')?.classList.add('active-row');
+                } else if (anpUSD >= 22500) {
+                    rewardIDR = 1500000;
+                    tierName = 'TIER USD 22.500';
+                    progress = Math.round((anpUSD / 30000) * 100);
+                    nextHint = `Kurang ${formatUSD(30000 - anpUSD)} lagi untuk Tier USD 30.000 (Rp 2.000.000)`;
+                    document.getElementById('row-p2-2')?.classList.add('active-row');
+                } else if (anpUSD >= 15000) {
+                    rewardIDR = 1000000;
+                    tierName = 'TIER USD 15.000';
+                    progress = Math.round((anpUSD / 22500) * 100);
+                    nextHint = `Kurang ${formatUSD(22500 - anpUSD)} lagi untuk Tier USD 22.500 (Rp 1.500.000)`;
+                    document.getElementById('row-p2-1')?.classList.add('active-row');
+                } else {
+                    progress = Math.round((anpUSD / 15000) * 100);
+                    nextHint = `Kurang ${formatUSD(15000 - anpUSD)} lagi untuk Tier 1 (Rp 1.000.000)`;
+                }
+
+                currentResult = {
+                    amountIDR: rewardIDR,
+                    amountUSD: rewardIDR / usdRate,
+                    status: rewardIDR > 0 ? `Teraplikasi ${tierName}` : 'Belum Mencapai Minimal USD 15.000',
+                    tierName: tierName,
+                    progressPercent: progress,
+                    nextHint: nextHint,
+                    breakdown: [
+                        { label: 'Total ANP USD', value: formatUSD(anpUSD) },
+                        { label: 'Pencapaian Tier', value: tierName },
+                        { label: 'Base Tier Cash Reward', value: formatIDR(Math.min(rewardIDR, 3000000)) },
+                        { label: 'Booster Kelipatan (USD 10.000)', value: anpUSD > 40000 ? formatIDR(rewardIDR - 3000000) : 'Rp 0' }
+                    ]
+                };
+
+            } else if (activeTab === 'p3') {
+                const role = document.getElementById('roleP3')?.value || 'seller';
+                const anpIDR = parseNum(document.getElementById('anpP3')?.value || 0);
+                document.getElementById('anpP3Helper').textContent = formatIDR(anpIDR);
+
+                const sellerTiers = [1000000, 2500000, 5000000, 10000000];
+                const leaderTiers = [300000, 750000, 1500000, 3000000];
+                const targets = [150000000, 300000000, 600000000, 1000000000];
+                const arr = role === 'seller' ? sellerTiers : leaderTiers;
+
+                let rewardIDR = 0;
+                let tierName = 'BELUM TIER';
+                let progress = 0;
+                let nextHint = '';
+
+                [1,2,3,4].forEach(i => document.getElementById(`row-p3-${i}`)?.classList.remove('active-row'));
+
+                if (anpIDR >= targets[3]) {
+                    const extraSteps = Math.floor((anpIDR - targets[3]) / 100000000);
+                    const bonusPerStep = role === 'seller' ? 1500000 : 500000;
+                    rewardIDR = arr[3] + (extraSteps * bonusPerStep);
+                    tierName = 'TIER ≥ Rp 1 MILIAR';
+                    progress = 100;
+                    const nextCost = 100000000 - ((anpIDR - targets[3]) % 100000000);
+                    nextHint = `Tambahkan ${formatIDR(nextCost)} untuk bonus kelipatan +${formatIDR(bonusPerStep)}`;
+                    document.getElementById('row-p3-4')?.classList.add('active-row');
+                } else if (anpIDR >= targets[2]) {
+                    rewardIDR = arr[2];
+                    tierName = 'TIER Rp 600 JUTA';
+                    progress = Math.round((anpIDR / targets[3]) * 100);
+                    nextHint = `Kurang ${formatIDR(targets[3] - anpIDR)} untuk Tier Rp 1 Miliar`;
+                    document.getElementById('row-p3-3')?.classList.add('active-row');
+                } else if (anpIDR >= targets[1]) {
+                    rewardIDR = arr[1];
+                    tierName = 'TIER Rp 300 JUTA';
+                    progress = Math.round((anpIDR / targets[2]) * 100);
+                    nextHint = `Kurang ${formatIDR(targets[2] - anpIDR)} untuk Tier Rp 600 Juta`;
+                    document.getElementById('row-p3-2')?.classList.add('active-row');
+                } else if (anpIDR >= targets[0]) {
+                    rewardIDR = arr[0];
+                    tierName = 'TIER Rp 150 JUTA';
+                    progress = Math.round((anpIDR / targets[1]) * 100);
+                    nextHint = `Kurang ${formatIDR(targets[1] - anpIDR)} untuk Tier Rp 300 Juta`;
+                    document.getElementById('row-p3-1')?.classList.add('active-row');
+                } else {
+                    progress = Math.round((anpIDR / targets[0]) * 100);
+                    nextHint = `Kurang ${formatIDR(targets[0] - anpIDR)} untuk Tier 1 (Rp 150.000.000)`;
+                }
+
+                currentResult = {
+                    amountIDR: rewardIDR,
+                    amountUSD: rewardIDR / usdRate,
+                    status: rewardIDR > 0 ? `Role ${role.toUpperCase()} - ${tierName}` : 'Belum Mencapai Tier Min. Rp 150.000.000',
+                    tierName: tierName,
+                    progressPercent: progress,
+                    nextHint: nextHint,
+                    breakdown: [
+                        { label: 'Peran Terpilih', value: role.toUpperCase() },
+                        { label: 'Total Accumulative ANP', value: formatIDR(anpIDR) },
+                        { label: 'Pencapaian Tiering', value: tierName },
+                        { label: 'Base Reward', value: formatIDR(Math.min(rewardIDR, arr[3])) },
+                        { label: 'Tambahan Kelipatan 100.000.000', value: anpIDR > targets[3] ? formatIDR(rewardIDR - arr[3]) : 'Rp 0' }
+                    ]
+                };
+
+            } else if (activeTab === 'p4') {
+                const anpConv = parseNum(document.getElementById('anpConvP4')?.value || 0);
+                const shariaANP = parseNum(document.getElementById('anpShariaP4')?.value || 0);
+                const anpIDR = anpConv + shariaANP;
+                const cases = parseNum(document.getElementById('casesP4')?.value || 1);
+                const anpSubmit = parseNum(document.getElementById('anpSubmitP4')?.value || 0);
+                const isBooster = anpSubmit > 0;
+                const ntbaANP = parseNum(document.getElementById('ntbaP4')?.value || 0);
+                const isShariaCase = document.getElementById('shariaCaseP4')?.value === '1';
+
+                if (document.getElementById('anpConvP4Helper')) document.getElementById('anpConvP4Helper').textContent = formatIDR(anpConv);
+                if (document.getElementById('anpShariaP4Helper')) document.getElementById('anpShariaP4Helper').textContent = formatIDR(shariaANP);
+                if (document.getElementById('anpSubmitP4Helper')) document.getElementById('anpSubmitP4Helper').textContent = formatIDR(anpSubmit);
+                if (document.getElementById('anpP4Total')) document.getElementById('anpP4Total').textContent = formatIDR(anpIDR);
+                if (document.getElementById('ntbaP4Helper')) document.getElementById('ntbaP4Helper').textContent = formatIDR(ntbaANP);
+
+                const categories = [
+                    { name: 'Rookie', min: 25000000, c1: 150000, c2: 250000, booster: 150000 },
+                    { name: 'Bronze', min: 75000000, c1: 750000, c2: 1000000, booster: 250000 },
+                    { name: 'Silver', min: 150000000, c1: 3000000, c2: 4000000, booster: 1000000 },
+                    { name: 'Gold', min: 250000000, c1: 6000000, c2: 7000000, booster: 2000000 },
+                    { name: 'Platinum', min: 500000000, c1: 14000000, c2: 16000000, booster: 5000000 }
+                ];
+
+                [0,1,2,3,4].forEach(i => document.getElementById(`row-p4-${i}`)?.classList.remove('active-row'));
+
+                let catIdx = -1;
+                for (let i = 0; i < categories.length; i++) {
+                    if (anpIDR >= categories[i].min) catIdx = i;
+                }
+
+                let regularReward = 0;
+                let boosterReward = 0;
+                let extraGoldPlat = 0;
+                let shariaReward = 0;
+                let ntbaMultiplier = 1.1;
+                let categoryName = 'Belum Rookie';
+                let progress = 0;
+                let nextHint = '';
+
+                if (catIdx >= 0) {
+                    document.getElementById(`row-p4-${catIdx}`)?.classList.add('active-row');
+                    const cat = categories[catIdx];
+                    categoryName = cat.name;
+                    regularReward = cases >= 2 ? cat.c2 : cat.c1;
+                    boosterReward = isBooster ? cat.booster : 0;
+
+                    if (catIdx === 3) {
+                        const steps = Math.floor((anpIDR - 250000000) / 50000000);
+                        extraGoldPlat = steps * (cases >= 2 ? 1500000 : 1000000);
+                    } else if (catIdx === 4) {
+                        const steps = Math.floor((anpIDR - 500000000) / 50000000);
+                        extraGoldPlat = steps * (cases >= 2 ? 3000000 : 2000000);
+                    }
+
+                    if (ntbaANP < 150000000) ntbaMultiplier = 1.1;
+                    else if (ntbaANP <= 500000000) ntbaMultiplier = 1.2;
+                    else ntbaMultiplier = 1.3;
+
+                    if (catIdx === 0 && isShariaCase) shariaReward = 50000;
+                    else if (catIdx === 1 && isShariaCase) shariaReward = 200000;
+                    else if (catIdx === 2 && shariaANP >= 30000000) shariaReward = 800000;
+                    else if (catIdx === 3 && shariaANP >= 50000000) shariaReward = 1500000;
+                    else if (catIdx === 4 && shariaANP >= 100000000) shariaReward = 3000000;
+
+                    if (catIdx < 4) {
+                        const nextTarget = categories[catIdx + 1].min;
+                        progress = Math.round((anpIDR / nextTarget) * 100);
+                        nextHint = `Kurang ${formatIDR(nextTarget - anpIDR)} lagi untuk Kategori ${categories[catIdx + 1].name}`;
+                    } else {
+                        progress = 100;
+                        nextHint = `Kategori Tertinggi (Platinum). Tambahkan kelipatan 50.000.000 untuk +${cases >= 2 ? 'Rp 3.000.000' : 'Rp 2.000.000'}`;
+                    }
+                } else {
+                    progress = Math.round((anpIDR / 25000000) * 100);
+                    nextHint = `Kurang ${formatIDR(25000000 - anpIDR)} lagi untuk Kategori Rookie`;
+                }
+
+                const subtotalBase = regularReward + boosterReward + extraGoldPlat;
+                const multipliedSubtotal = Math.round(subtotalBase * ntbaMultiplier);
+                const grandTotal = multipliedSubtotal + shariaReward;
+
+                currentResult = {
+                    amountIDR: grandTotal,
+                    amountUSD: grandTotal / usdRate,
+                    status: catIdx >= 0 ? `Kategori ${categoryName} (${cases >= 2 ? '≥2 Cases' : '0-1 Case'})` : 'Belum Memenuhi Kategori Rookie',
+                    tierName: categoryName,
+                    progressPercent: progress,
+                    nextHint: nextHint,
+                    breakdown: [
+                        { label: 'ANP Conventional', value: formatIDR(anpConv) },
+                        { label: 'ANP Sharia', value: formatIDR(shariaANP) },
+                        { label: 'Total ANP (otomatis)', value: formatIDR(anpIDR) },
+                        { label: 'ANP NTBA (bagian dari Total ANP)', value: formatIDR(ntbaANP) },
+                        { label: 'ANP Submit 1–15 Nov', value: formatIDR(anpSubmit) },
+                        { label: 'Kategori Tiering', value: categoryName },
+                        { label: 'Base Reward NB', value: formatIDR(regularReward) },
+                        { label: 'Add Booster Submit', value: formatIDR(boosterReward) },
+                        { label: 'Extra Gold/Platinum (per 50M)', value: formatIDR(extraGoldPlat) },
+                        { label: 'Multiplier NTBA Factor', value: `${(ntbaMultiplier * 100).toFixed(0)}%` },
+                        { label: 'Subtotal x Multiplier', value: formatIDR(multipliedSubtotal) },
+                        { label: 'Extra Reward Sharia', value: formatIDR(shariaReward) }
+                    ]
+                };
+            }
+
+            renderResults();
+        }
+
+        function calculateMaster() {
+            const usdRate = 16000;
+            const p1Anp = parseNum(document.getElementById('mP1')?.value || 0);
+            const p2Anp = parseNum(document.getElementById('mP2')?.value || 0);
+            const p3Anp = parseNum(document.getElementById('mP3')?.value || 0);
+            const p4Anp = parseNum(document.getElementById('mP4')?.value || 0);
+            const p4Cases = parseNum(document.getElementById('mP4cases')?.value || 1);
+            const p4BoosterEligible = document.getElementById('mP4booster')?.value === 'yes';
+            const p4Ntba = parseNum(document.getElementById('mP4ntba')?.value || 0);
+            const p4Sharia = parseNum(document.getElementById('mP4sharia')?.value || 0);
+            const p4ShariaCase = document.getElementById('mP4shariaCase')?.value === '1';
+
+            const rP1 = (p1Anp >= 2000 ? p1Anp * 0.01 : 0) * usdRate;
+            
+            let rP2 = 0;
+            if (p2Anp >= 40000) rP2 = 3000000 + (Math.floor((p2Anp - 40000)/10000) * 500000);
+            else if (p2Anp >= 30000) rP2 = 2000000;
+            else if (p2Anp >= 22500) rP2 = 1500000;
+            else if (p2Anp >= 15000) rP2 = 1000000;
+
+            let rP3 = 0;
+            if (p3Anp >= 1000000000) rP3 = 10000000 + (Math.floor((p3Anp - 1000000000)/100000000) * 1500000);
+            else if (p3Anp >= 600000000) rP3 = 5000000;
+            else if (p3Anp >= 300000000) rP3 = 2500000;
+            else if (p3Anp >= 150000000) rP3 = 1000000;
+
+            const p4Cats = [
+                { min: 25000000, c1: 150000, c2: 250000, booster: 150000 },
+                { min: 75000000, c1: 750000, c2: 1000000, booster: 250000 },
+                { min: 150000000, c1: 3000000, c2: 4000000, booster: 1000000 },
+                { min: 250000000, c1: 6000000, c2: 7000000, booster: 2000000 },
+                { min: 500000000, c1: 14000000, c2: 16000000, booster: 5000000 }
+            ];
+            let p4Idx = -1;
+            p4Cats.forEach((c, i) => { if (p4Anp >= c.min) p4Idx = i; });
+            let rP4 = 0;
+            if (p4Idx >= 0) {
+                const c = p4Cats[p4Idx];
+                const p4Base = p4Cases >= 2 ? c.c2 : c.c1;
+                const p4Booster = p4BoosterEligible ? c.booster : 0;
+                let p4Extra = 0;
+                if (p4Idx === 3) p4Extra = Math.floor((p4Anp - 250000000) / 50000000) * (p4Cases >= 2 ? 1500000 : 1000000);
+                if (p4Idx === 4) p4Extra = Math.floor((p4Anp - 500000000) / 50000000) * (p4Cases >= 2 ? 3000000 : 2000000);
+                const p4Multiplier = p4Ntba < 150000000 ? 1.1 : (p4Ntba <= 500000000 ? 1.2 : 1.3);
+                let p4ShariaReward = 0;
+                if (p4Idx === 0 && p4ShariaCase) p4ShariaReward = 50000;
+                else if (p4Idx === 1 && p4ShariaCase) p4ShariaReward = 200000;
+                else if (p4Idx === 2 && p4Sharia >= 30000000) p4ShariaReward = 800000;
+                else if (p4Idx === 3 && p4Sharia >= 50000000) p4ShariaReward = 1500000;
+                else if (p4Idx === 4 && p4Sharia >= 100000000) p4ShariaReward = 3000000;
+                rP4 = Math.round((p4Base + p4Booster + p4Extra) * p4Multiplier) + p4ShariaReward;
+            }
+
+            const total = rP1 + rP2 + rP3 + rP4;
+
+            currentResult = {
+                amountIDR: total,
+                amountUSD: total / usdRate,
+                status: 'Kombinasi 4 Program',
+                tierName: 'ALL-STAR',
+                progressPercent: 100,
+                nextHint: 'Simulasi gabungan seluruh lini produk Bancassurance',
+                breakdown: [
+                    { label: 'Estimasi Prog 01 (Fund)', value: formatIDR(rP1) },
+                    { label: 'Estimasi Prog 02 (Pintar USD)', value: formatIDR(rP2) },
+                    { label: 'Estimasi Prog 03 (Prestige Shield)', value: formatIDR(rP3) },
+                    { label: 'Estimasi Prog 04 (Reach More)', value: formatIDR(rP4) },
+                    { label: 'GRAND TOTAL POTENSI REWARD', value: formatIDR(total) }
+                ]
+            };
+            renderResults();
+        }
+
+        // RENDER LIVE RESULTS TO UI
+        function renderResults() {
+            document.getElementById('liveRewardAmount').textContent = formatIDR(currentResult.amountIDR);
+            
+            const usdDisp = document.getElementById('usdConvertedDisplay');
+            if (activeTab === 'p1' && currentResult.amountUSD > 0) {
+                usdDisp.textContent = `≈ ${formatUSD(currentResult.amountUSD)} (Berdasarkan Kurs USD Preset)`;
+                usdDisp.classList.remove('hidden');
+            } else {
+                usdDisp.classList.add('hidden');
+            }
+
+            document.getElementById('liveStatusText').textContent = currentResult.status;
+            document.getElementById('tierBadge').textContent = currentResult.tierName;
+            
+            // Progress Bar
+            document.getElementById('progressPercent').textContent = `${currentResult.progressPercent}%`;
+            document.getElementById('progressBar').style.width = `${currentResult.progressPercent}%`;
+            document.getElementById('progressNextHint').textContent = currentResult.nextHint;
+
+            // Breakdown Items
+            const bdContainer = document.getElementById('breakdownList');
+            bdContainer.innerHTML = currentResult.breakdown.map((item, idx) => `
+                <div class="flex justify-between items-center py-1 border-b border-slate-300/40 ${idx === currentResult.breakdown.length - 1 ? 'font-bold text-blue-600 text-sm pt-2 border-t border-slate-400' : 'text-slate-600'}">
+                    <span class="text-slate-500 font-medium">${item.label}</span>
+                    <span class="font-mono font-bold">${item.value}</span>
+                </div>
+            `).join('');
+        }
+
+        // COPY SUMMARY TO CLIPBOARD
+        function copyDetailedQuote() {
+            const p = programsData[activeTab];
+            let text = `*SIMULASI REWARD BANCASSURANCE MAYBANK x ALLIANZ (NOV 2026)*\n`;
+            text += `Program: ${p.title}\n`;
+            text += `Status: ${currentResult.status}\n`;
+            text += `------------------------------------\n`;
+            currentResult.breakdown.forEach(b => {
+                text += `• ${b.label}: ${b.value}\n`;
+            });
+            text += `------------------------------------\n`;
+            text += `ESTIMASI TOTAL CASH REWARD: ${formatIDR(currentResult.amountIDR)}\n\n`;
+            text += `_Disimulasikan melalui Internal Reference Portal November 2026._`;
+
+            const dummy = document.createElement("textarea");
+            document.body.appendChild(dummy);
+            dummy.value = text;
+            dummy.select();
+            document.execCommand("copy");
+            document.body.removeChild(dummy);
+
+            showToast('Rincian simulasi berhasil disalin!');
+        }
+
+        function shareSummary() {
+            copyDetailedQuote();
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMessage').textContent = msg;
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', function() {
+            try {
+                const now = new Date();
+                const options = { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+                document.getElementById('printDate').textContent = 'Dicetak pada: ' + now.toLocaleDateString('id-ID', options);
+                
+                switchTab('p1');
+            } catch (error) {
+                console.error('Inisialisasi kalkulator gagal:', error);
+            }
+        });
+    </script>
+</body>
+</html>
